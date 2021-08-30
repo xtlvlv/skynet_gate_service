@@ -1,0 +1,48 @@
+26/08/21 00:52:52.90 [:00000002] LAUNCH snlua bootstrap
+26/08/21 00:52:52.94 [:00000003] LAUNCH snlua launcher
+26/08/21 00:52:52.96 [:00000004] LAUNCH snlua cdummy
+26/08/21 00:52:52.96 [:00000005] LAUNCH harbor 0 4
+26/08/21 00:52:52.97 [:00000006] LAUNCH snlua datacenterd
+26/08/21 00:52:52.97 [:00000007] LAUNCH snlua service_mgr
+26/08/21 00:52:52.97 [:00000008] LAUNCH snlua main
+26/08/21 00:52:52.98 [:00000008] [INFO] server start
+26/08/21 00:52:52.98 [:00000008] KILL self
+26/08/21 00:52:52.98 [:00000002] KILL self
+26/08/21 00:53:41.21 [:00000002] LAUNCH snlua bootstrap
+26/08/21 00:53:41.24 [:00000003] LAUNCH snlua launcher
+26/08/21 00:53:41.26 [:00000004] LAUNCH snlua cdummy
+26/08/21 00:53:41.26 [:00000005] LAUNCH harbor 0 4
+26/08/21 00:53:41.26 [:00000006] LAUNCH snlua datacenterd
+26/08/21 00:53:41.27 [:00000007] LAUNCH snlua service_mgr
+26/08/21 00:53:41.27 [:00000008] LAUNCH snlua main
+26/08/21 00:53:41.28 [:00000008] [INFO] server start
+26/08/21 00:53:41.29 [:00000009] LAUNCH snlua console
+26/08/21 00:53:41.29 [:00000008] KILL self
+26/08/21 00:53:41.29 [:00000002] KILL self
+26/08/21 00:53:54.68 [:0000000a] LAUNCH snlua log
+26/08/21 00:53:54.68 [:0000000a] lua loader error : ./skynet/lualib/loader.lua:24: cannot open ./service/log.lua: No such file or directory
+cannot open ./skynet/service/log.lua: No such file or directory
+stack traceback:
+	[C]: in function 'error'
+	./skynet/lualib/loader.lua:24: in main chunk
+26/08/21 00:53:54.68 [:0000000a] KILL self
+26/08/21 00:54:06.70 [:0000000b] LAUNCH snlua help
+26/08/21 00:54:06.70 [:0000000b] lua loader error : ./skynet/lualib/loader.lua:24: cannot open ./service/help.lua: No such file or directory
+cannot open ./skynet/service/help.lua: No such file or directory
+stack traceback:
+	[C]: in function 'error'
+	./skynet/lualib/loader.lua:24: in main chunk
+26/08/21 00:54:06.70 [:0000000b] KILL self
+26/08/21 00:54:21.91 [:0000000c] LAUNCH snlua main
+26/08/21 00:54:21.91 [:0000000c] [INFO] server start
+26/08/21 00:54:21.91 [:0000000d] LAUNCH snlua console
+26/08/21 00:54:21.91 [:0000000d] lua call [0 to :d : 0 msgsz = 56] error : [31m./skynet/lualib/skynet.lua:858: ./skynet/lualib/skynet.lua:330: ./skynet/lualib/skynet/socket.lua:358: assertion failed!
+stack traceback:
+	[C]: in function 'assert'
+	./skynet/lualib/skynet/socket.lua:358: in function 'skynet.socket.readline'
+	./skynet/service/console.lua:16: in upvalue 'f'
+	./skynet/lualib/skynet.lua:253: in function <./skynet/lualib/skynet.lua:252>
+stack traceback:
+	[C]: in function 'assert'
+	./skynet/lualib/skynet.lua:858: in function 'skynet.dispatch_message'[0m
+26/08/21 00:54:21.91 [:0000000c] KILL self
