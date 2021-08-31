@@ -5,9 +5,15 @@ local log = require "log"
 
 
 local CMD = {}
+local AGENT
+
+function CMD.init(agent)
+    AGENT = agent
+end
 
 function CMD.login(fd, msg)
     log.Info(fd, "...login...", msg)
+    skynet.call(AGENT, "lua", "login", fd, msg)
 end
 
 

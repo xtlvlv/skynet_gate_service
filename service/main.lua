@@ -15,6 +15,7 @@ skynet.start(function ()
 
     -- 启动网关服务器
     local GATE = skynet.newservice("gate")
+    local AGENT = skynet.newservice("agent")
 
     -- local conf = {}
     -- conf.login = login
@@ -23,6 +24,8 @@ skynet.start(function ()
     skynet.call(GATE, "lua", "init", {
         login = LOGIN,
     })
+    skynet.call(AGENT, "lua", "init", GATE)
+    skynet.call(LOGIN, "lua", "init", AGENT)
 
     skynet.call(GATE, "lua", "start")
     

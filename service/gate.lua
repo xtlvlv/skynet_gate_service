@@ -43,7 +43,8 @@ function handler.message(fd, msg)
     local agent = c and c.agent
     if agent then -- 已登录
         -- TODO: 转发给agent处理
-        skynet.redirect(agent, c.client, "client", fd, msg)
+        log.Info("redirect client")
+        skynet.send(agent, "lua", "deal_msg", fd, msg)
     else
         skynet.send(LOGIN, "lua", "login", fd, msg)
     end
@@ -78,12 +79,12 @@ function CMD.start()
     end)
 end
 
-function CMD.init(conf)
+function CMD.init(source, conf)
     log.Trace("...conf...", conf)
     LOGIN = conf.login
 end
 
-function unforward(c)
+local function unforward(c)
     if c.agent then
         forwarding[c.agent] = nil
         c.agent = nil
@@ -92,7 +93,9 @@ function unforward(c)
 end
 
 function CMD.forward(source, fd, client, address)
+    log.Info(string.format("forward, fd=%s, address=%s, client=%s, source=%s.", fd, address, client, source))
     local c = assert(connection[fd])
+    unforward(c)
     c.client = client or 0
     c.agent = address or source
     forwarding[c.agent] = c
@@ -102,16 +105,16 @@ skynet.start(function ()
     
     log.Info("...gate service start...")
     skynet.dispatch("lua", function (session, source, cmd, ...)
-        log.Info(string.format("session=%s, source=%s, cmd=%s", session, source, cmd))
+        log.Info(string.format("gate dispatch session=%s, source=%s, cmd=%s", session, source, cmd))
         local f = CMD[cmd]
         if not f then
             log.Error("gate service no fuction ", cmd)
         end
 
         if session == 0 then
-            f(...)
+            f(source, ...)
         else
-            skynet.ret(skynet.pack(f(...)))
+            skynet.ret(skynet.pack(f(source, ...)))
         end
     end)
 end)
