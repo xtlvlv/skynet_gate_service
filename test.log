@@ -1,0 +1,86 @@
+13/09/21 20:57:59.61 [:00000002] LAUNCH snlua bootstrap
+13/09/21 20:57:59.64 [:00000003] LAUNCH snlua launcher
+13/09/21 20:57:59.64 [:00000004] LAUNCH snlua cdummy
+13/09/21 20:57:59.64 [:00000005] LAUNCH harbor 0 4
+13/09/21 20:57:59.64 [:00000006] LAUNCH snlua datacenterd
+13/09/21 20:57:59.64 [:00000007] LAUNCH snlua service_mgr
+13/09/21 20:57:59.64 [:00000008] LAUNCH snlua main
+13/09/21 20:57:59.65 [:00000008] KILL self
+13/09/21 20:57:59.65 [:00000002] KILL self
+13/09/21 20:58:04.89 [:00000002] LAUNCH snlua bootstrap
+13/09/21 20:58:04.90 [:00000003] LAUNCH snlua launcher
+13/09/21 20:58:04.91 [:00000004] LAUNCH snlua cdummy
+13/09/21 20:58:04.91 [:00000005] LAUNCH harbor 0 4
+13/09/21 20:58:04.91 [:00000006] LAUNCH snlua datacenterd
+13/09/21 20:58:04.91 [:00000007] LAUNCH snlua service_mgr
+13/09/21 20:58:04.91 [:00000008] LAUNCH snlua main
+13/09/21 20:58:04.91 [:00000008] KILL self
+13/09/21 20:58:04.91 [:00000002] KILL self
+14/09/21 10:51:03.07 [:00000002] LAUNCH snlua bootstrap
+14/09/21 10:51:03.11 [:00000003] LAUNCH snlua launcher
+14/09/21 10:51:03.11 [:00000004] LAUNCH snlua cdummy
+14/09/21 10:51:03.11 [:00000005] LAUNCH harbor 0 4
+14/09/21 10:51:03.11 [:00000006] LAUNCH snlua datacenterd
+14/09/21 10:51:03.11 [:00000007] LAUNCH snlua service_mgr
+14/09/21 10:51:03.11 [:00000008] LAUNCH snlua main
+14/09/21 10:51:03.11 [:00000008] lua loader error : error loading module 'config' from file './conf/config.lua':
+	./conf/config.lua:10: malformed number near '127.0.0.1'
+stack traceback:
+	[C]: in ?
+	[C]: in upvalue 'require'
+	./skynet/lualib/skynet/require.lua:31: in function 'skynet.require.require'
+	./service/main.lua:2: in local 'main'
+	./skynet/lualib/loader.lua:50: in main chunk
+14/09/21 10:51:03.11 [:00000008] KILL self
+14/09/21 10:51:03.11 [:00000002] KILL self
+14/09/21 10:51:25.97 [:00000002] LAUNCH snlua bootstrap
+14/09/21 10:51:25.98 [:00000003] LAUNCH snlua launcher
+14/09/21 10:51:25.98 [:00000004] LAUNCH snlua cdummy
+14/09/21 10:51:25.98 [:00000005] LAUNCH harbor 0 4
+14/09/21 10:51:25.98 [:00000006] LAUNCH snlua datacenterd
+14/09/21 10:51:25.98 [:00000007] LAUNCH snlua service_mgr
+14/09/21 10:51:25.98 [:00000008] LAUNCH snlua main
+14/09/21 10:51:25.98 [:00000008] lua loader error : error loading module 'config' from file './conf/config.lua':
+	./conf/config.lua:10: malformed number near '127.0.0.1'
+stack traceback:
+	[C]: in ?
+	[C]: in upvalue 'require'
+	./skynet/lualib/skynet/require.lua:31: in function 'require'
+	./service/main.lua:2: in local 'main'
+	./skynet/lualib/loader.lua:50: in main chunk
+14/09/21 10:51:25.98 [:00000008] KILL self
+14/09/21 10:51:25.98 [:00000002] KILL self
+14/09/21 10:52:13.27 [:00000002] LAUNCH snlua bootstrap
+14/09/21 10:52:13.29 [:00000003] LAUNCH snlua launcher
+14/09/21 10:52:13.29 [:00000004] LAUNCH snlua cdummy
+14/09/21 10:52:13.29 [:00000005] LAUNCH harbor 0 4
+14/09/21 10:52:13.29 [:00000006] LAUNCH snlua datacenterd
+14/09/21 10:52:13.29 [:00000007] LAUNCH snlua service_mgr
+14/09/21 10:52:13.29 [:00000008] LAUNCH snlua main
+14/09/21 10:52:13.29 [:00000008] lua loader error : error loading module 'config' from file './conf/config.lua':
+	./conf/config.lua:10: malformed number near '127.0.0.1'
+stack traceback:
+	[C]: in ?
+	[C]: in upvalue 'require'
+	./skynet/lualib/skynet/require.lua:31: in function 'require'
+	./service/main.lua:2: in local 'main'
+	./skynet/lualib/loader.lua:50: in main chunk
+14/09/21 10:52:13.29 [:00000008] KILL self
+14/09/21 10:52:13.29 [:00000002] KILL self
+14/09/21 10:52:42.63 [:00000002] LAUNCH snlua bootstrap
+14/09/21 10:52:42.65 [:00000003] LAUNCH snlua launcher
+14/09/21 10:52:42.65 [:00000004] LAUNCH snlua cdummy
+14/09/21 10:52:42.65 [:00000005] LAUNCH harbor 0 4
+14/09/21 10:52:42.65 [:00000006] LAUNCH snlua datacenterd
+14/09/21 10:52:42.65 [:00000007] LAUNCH snlua service_mgr
+14/09/21 10:52:42.65 [:00000008] LAUNCH snlua main
+14/09/21 10:52:42.65 [:00000008] lua loader error : error loading module 'config' from file './conf/config.lua':
+	./conf/config.lua:10: malformed number near '127.0.0.1'
+stack traceback:
+	[C]: in ?
+	[C]: in upvalue 'require'
+	./skynet/lualib/skynet/require.lua:31: in function 'require'
+	./service/main.lua:2: in local 'main'
+	./skynet/lualib/loader.lua:50: in main chunk
+14/09/21 10:52:42.65 [:00000008] KILL self
+14/09/21 10:52:42.65 [:00000002] KILL self

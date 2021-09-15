@@ -1,11 +1,21 @@
 local skynet = require "skynet"
+local log = require "util.log"
 
-local export = {}        -- 模块对外接口
+local M = {}        -- 模块对外接口
 local conf = {}     -- 配置
 
 -- 配置管理
 
-function export.get(key)
+local function set_gateway()
+    local gateway = {
+        ip = "0.0.0.0",
+        port = 19999,
+    }
+    conf["gateway"] = gateway
+    -- table.insert(conf, gateway)
+end
+
+function M.get(key)
     if conf[key] ~= nil then
         return conf[key]
     end
@@ -31,4 +41,6 @@ function export.get(key)
     return conf[key]
 end
 
-return export
+set_gateway()   -- gateway 配置
+
+return M
