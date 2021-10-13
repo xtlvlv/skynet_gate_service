@@ -29,3 +29,19 @@
 
 ## 配置管理
 - 游戏内的配置，使用配置文件的方式，先不用配表
+
+
+# 依赖的第三方库
+
+## 日志库
+
+## json库
+- https://github.com/rxi/json.lua
+
+## md5库
+- https://github.com/keplerproject/md5
+```lua
+-- 获得32位小写加密字符串
+md5.sumhexa(111)
+```
+

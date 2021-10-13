@@ -4,6 +4,7 @@ require "skynet.manager"
 local log = require "util.log"
 local json = require "util.json"
 local model = require "model"
+local md5 = require "md5"
 
 local CMD = {}
 
@@ -45,11 +46,23 @@ function CMD.login(fd, msg)
         return
     end
     
-    -- 玩家账号校验，简化处理，不存在默认添加，暂时保存在内存中 TODO:
+    -- 登录密码，客户端进行一次md5，服务端对md5后的值再进行一次md5
+    -- 玩家账号校验，去改账号数据库中的密码，进行比对
+    -- 简化处理，不存在默认添加，暂时保存在内存中 TODO:
     if login_info.user_id==nil then
         log.error(string.format(" no user_id msg=%s", msg))
         return
     end
+
+    if login_info.pwd == nil then
+        log.error(string.format(" no pwd msg=%s", msg))
+        return
+    end
+
+    local pwd_md5 = md5.sumhexa(login_info.pwd) -- pwd实际是客户端md5后的值
+    log.info("pwd_md5=", pwd_md5)
+
+    -- 先不使用数据库
     if login_info.user_id ~= login_info.pwd then
         log.error(string.format(" pwd is incorrect  user_id=%s  pwd=%s ", login_info.user_id, login_info.pwd))
         return
