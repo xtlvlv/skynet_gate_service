@@ -1,5 +1,6 @@
 local websocket = require "http.websocket"
 local skynet = require "skynet"
+require "skynet.manager"
 
 local log = require "util.log"
 local model = require "model"
@@ -40,7 +41,8 @@ function handler.message(fd, msg)
     local user_id = model.connections[fd].user_id
     
     if user_id then    -- 已经登录
-        -- skynet.call() --转发给对应的agent处理
+        local agent = skynet.localname(".agent"..user_id)
+        skynet.send(agent, "lua", "message", msg)
     else
         local login = skynet.localname(".login")
         skynet.send(login, "lua", "login", fd, msg)
@@ -67,8 +69,14 @@ function handler.pong(fd)
 end
 
 function handler.close(fd, code, reason)
-    log.info("...close...")
-    log.info(" close code：", code, " reason: ", reason)
+    log.info(string.format(" close... fd=%s  code=%s  reason=%s ", fd, code, reason))
+    
+    -- TODO: call kick
+    local login = skynet.localname(".login")
+    skynet.send(login, "lua", "kick", fd)
+
+    -- 删除连接，不用加锁吗？在下线成功的回调中再删除
+    -- model.connections[fd] = nil  
 end
 
 function handler.error(fd)

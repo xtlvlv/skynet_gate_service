@@ -1,3 +1,8 @@
+--[[
+处理玩家的游戏逻辑
+    
+--]]
+
 local skynet = require "skynet"
 local log = require "util.log"
 
@@ -11,9 +16,9 @@ skynet.start(function()
         end
 
         if session == 0 then
-            f(source, ...)
+            f(...)
         else
-            skynet.ret(skynet.pack(f(source, ...)))
+            skynet.ret(skynet.pack(f(...)))
         end
     end)
 end)

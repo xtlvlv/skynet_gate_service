@@ -46,19 +46,40 @@ function CMD.login(fd, msg)
     end
     
     -- 玩家账号校验，简化处理，不存在默认添加，暂时保存在内存中 TODO:
+    if login_info.user_id==nil then
+        log.error(string.format(" no user_id msg=%s", msg))
+        return
+    end
+    if login_info.user_id ~= login_info.pwd then
+        log.error(string.format(" pwd is incorrect  user_id=%s  pwd=%s ", login_info.user_id, login_info.pwd))
+        return
+    end
 
     -- 检查玩家是否在线
-    if model.players[login_info.user_id] then
+    if model.players[fd] then
         log.warn(string.format("The player is online.  user_id=%s", login_info.user_id))
         return
     end
 
     -- 创建agent
     local agent = skynet.newservice("agent")
+    skynet.call(agent, "lua", "init", fd, login_info.user_id)
     skynet.name(".agent"..login_info.user_id, agent)
+
+    -- 更新在线玩家信息
+    model.players[fd] = {
+        user_id = login_info.user_id,
+        status = "online",
+    }
 
     local gate = skynet.localname(".gate")
     skynet.send(gate, "lua", "login_res", fd, login_info.user_id, agent)
+end
+
+function CMD.kick(fd)
+    -- TODO: send agent exit
+    model.players[fd].status = "offline"
+    log.info(string.format("kick player  fd=%s  user_id=%s ", fd, model.players[fd].user_id))
 end
 
 return CMD
