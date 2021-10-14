@@ -37,4 +37,16 @@ function CMD.login_res(fd, user_id, agent)
     log.info(string.format(" login successfully  fd=%s  user_id=%s", fd, user_id))
 end 
 
+function CMD.logout_res(fd)
+    if not model.connections[fd] then
+        log.error(string.format(" connection is not exist  fd=%s  user_id=%s", fd))
+        return
+    end
+
+    model.connections[fd] = nil
+
+    -- TODO: 返回给客户端退出成功
+    log.info(string.format(" logout successfully  fd=%s ", fd))
+end 
+
 return CMD

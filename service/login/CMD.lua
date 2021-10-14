@@ -83,6 +83,7 @@ function CMD.login(fd, msg)
     model.players[fd] = {
         user_id = login_info.user_id,
         status = "online",
+        agent = agent,
     }
 
     local gate = skynet.localname(".gate")
@@ -90,9 +91,20 @@ function CMD.login(fd, msg)
 end
 
 function CMD.kick(fd)
-    -- TODO: send agent exit
+  
+    if model.players[fd].status == "offline" then
+        -- 已经下线
+        return
+    end
     model.players[fd].status = "offline"
     log.info(string.format("kick player  fd=%s  user_id=%s ", fd, model.players[fd].user_id))
+
+    -- 只设置为下线状态，用户信息还存着，可以不退出agent，在这里控制agent退出
+    skynet.sleep(0.01*300)  -- 3s 后退出
+    skynet.send(model.players[fd].agent, "lua", "exit")
+
+    local gate = skynet.localname(".gate")
+    skynet.send(gate, "lua", "logout_res", fd)
 end
 
 return CMD

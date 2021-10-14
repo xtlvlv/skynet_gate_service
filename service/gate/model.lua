@@ -5,6 +5,7 @@
         fd = 1,
         addr = xx,
         user_id = 1,
+        pwd = 1(md5),
         agent = nil,
     }
 --]]

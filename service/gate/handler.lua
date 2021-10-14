@@ -38,10 +38,10 @@ function handler.message(fd, msg)
     local addr = websocket.addrinfo(fd)
     log.info(" recv msg from: ", fd, " addr:", addr, ", msg:", msg)
 
-    local user_id = model.connections[fd].user_id
+    local agent = model.connections[fd].agent
     
-    if user_id then    -- 已经登录
-        local agent = skynet.localname(".agent"..user_id)
+    if agent then    -- 已经登录
+        -- local agent = skynet.localname(".agent"..user_id)
         skynet.send(agent, "lua", "message", msg)
     else
         local login = skynet.localname(".login")
@@ -70,13 +70,20 @@ end
 
 function handler.close(fd, code, reason)
     log.info(string.format(" close... fd=%s  code=%s  reason=%s ", fd, code, reason))
-    
-    -- TODO: call kick
-    local login = skynet.localname(".login")
-    skynet.send(login, "lua", "kick", fd)
 
     -- 删除连接，不用加锁吗？在下线成功的回调中再删除
     -- model.connections[fd] = nil  
+
+    -- 给agent 发送登出协议
+    local login = skynet.localname(".login")
+    local user_id = model.connections[fd].user_id
+    if login ~= nil then
+        skynet.send(login, "lua", "kick", fd)
+    else
+        log.error(string.format(" no login service fd=%s, user_id=%s ", fd, user_id))
+    end
+    log.info(string.format(" agent close fd=%s, user_id=%s ", fd, user_id))
+    
 end
 
 function handler.error(fd)

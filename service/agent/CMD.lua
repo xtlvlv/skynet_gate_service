@@ -3,10 +3,9 @@ local skynet = require "skynet"
 local log = require "util.log"
 local json = require "util.json"
 local handler = require "handler"
+local player = require "model"
 
 local CMD = {}
-
-local player = {}
 
 function CMD.init(fd, user_id)
     player.fd = fd
@@ -34,6 +33,11 @@ function CMD.message(msg)
     
     skynet.ret(skynet.pack(f(json_info)))
 
+end
+
+function CMD.exit()
+    log.info(string.format("user exit! fd=%s", player.fd))
+    skynet.exit()
 end
 
 return CMD
